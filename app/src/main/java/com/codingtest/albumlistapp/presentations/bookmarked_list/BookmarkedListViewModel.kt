@@ -1,4 +1,6 @@
 package com.codingtest.albumlistapp.presentations.bookmarked_list
 
-class BookmarkedListViewModel {
+import androidx.lifecycle.ViewModel
+
+class BookmarkedListViewModel: ViewModel() {
 }
