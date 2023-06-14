@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.lifecycle.ViewModelProvider
 import com.codingtest.albumlistapp.R
 import com.codingtest.albumlistapp.databinding.FragmentAlbumListBinding
+import com.codingtest.albumlistapp.presentations.album_list.album.AlbumAdapter
 
 
 class AlbumListFragment : Fragment() {
@@ -28,6 +29,12 @@ class AlbumListFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
+        val adapter = AlbumAdapter()
+        binding.resultList.adapter = adapter
+
+        viewModel.albumApiResponse.observe(viewLifecycleOwner) {
+            adapter.submitList(it.results)
+        }
         return binding.root
     }
 
