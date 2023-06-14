@@ -2,9 +2,9 @@
 
 ## Steps
 1. Data Fetch Function
-  - Handle the Internet connection
-  - Get data from the url
-  - Display raw string data in TextView
+  - ~~Handle the Internet connection~~
+  - ~~Get data from the url~~
+  - ~~Display raw string data in TextView~~
 2. Data Visualization Function(Draft)
   - Use recycler view to contain the album data
 3. Bookmarked List Function
