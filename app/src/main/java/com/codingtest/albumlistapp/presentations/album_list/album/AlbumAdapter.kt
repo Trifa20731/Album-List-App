@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.ListAdapter
 import com.codingtest.albumlistapp.entities.Album
 import timber.log.Timber
 
-class AlbumAdapter: ListAdapter<Album, AlbumViewHolder>(AlbumDiffCallback()) {
+class AlbumAdapter(private val clickListener: AlbumClickListener): ListAdapter<Album, AlbumViewHolder>(AlbumDiffCallback()) {
 
     companion object {
         private const val LOG_TAG: String = "AlbumAdapter"
@@ -14,7 +14,7 @@ class AlbumAdapter: ListAdapter<Album, AlbumViewHolder>(AlbumDiffCallback()) {
     override fun onBindViewHolder(holder: AlbumViewHolder, position: Int) {
         Timber.tag(LOG_TAG).d("OnBindViewHolder: Run.")
         val item = getItem(position)
-        holder.bind(item)
+        holder.bind(clickListener, item)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): AlbumViewHolder {

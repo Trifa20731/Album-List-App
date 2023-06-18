@@ -6,7 +6,11 @@
         <variable
             name="album"
             type="com.codingtest.albumlistapp.entities.Album" />
+        <variable
+            name="clickListener"
+            type="com.codingtest.albumlistapp.presentations.album_list.album.AlbumClickListener" />
     </data>
+
     <LinearLayout
         android:orientation="horizontal"
         android:layout_width="match_parent"
@@ -43,11 +47,13 @@
                 android:layout_height="wrap_content"
                 android:text="@{album.releaseDate}"/>
 
-            <Button
+            <ImageButton
                 android:id="@+id/bookmarkedBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Add to bookmark"/>
+                android:background="@null"
+                app:isBookmarked="@{album.isBookmarked}"
+                android:onClick="@{() -> clickListener.onClick(album)}"/>
         </LinearLayout>
     </LinearLayout>
 

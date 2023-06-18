@@ -5,10 +5,12 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.codingtest.albumlistapp.R
 import com.codingtest.albumlistapp.databinding.FragmentAlbumListBinding
 import com.codingtest.albumlistapp.presentations.album_list.album.AlbumAdapter
+import com.codingtest.albumlistapp.presentations.album_list.album.AlbumClickListener
 
 
 class AlbumListFragment : Fragment() {
@@ -29,7 +31,11 @@ class AlbumListFragment : Fragment() {
         binding.lifecycleOwner = this
         binding.viewModel = viewModel
 
-        val adapter = AlbumAdapter()
+        val adapter = AlbumAdapter(AlbumClickListener { album ->
+            val currentAlbumBookmarkedState: Boolean = album.isBookmarked
+            album.isBookmarked = !currentAlbumBookmarkedState
+            Toast.makeText(requireContext(), "The bookmark state is ${album.isBookmarked}", Toast.LENGTH_SHORT).show()
+        })
         binding.resultList.adapter = adapter
 
         viewModel.albumApiResponse.observe(viewLifecycleOwner) {

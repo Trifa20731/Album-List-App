@@ -24,5 +24,6 @@ data class Album(
     val country: String,
     val currency: String,
     val releaseDate: String,
-    val primaryGenreName: String
+    val primaryGenreName: String,
+    var isBookmarked: Boolean = false,
 ): Parcelable
