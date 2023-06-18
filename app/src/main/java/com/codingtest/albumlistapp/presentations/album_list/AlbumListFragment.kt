@@ -34,7 +34,6 @@ class AlbumListFragment : Fragment() {
         val adapter = AlbumAdapter(AlbumClickListener { album ->
             val currentAlbumBookmarkedState: Boolean = album.isBookmarked
             album.isBookmarked = !currentAlbumBookmarkedState
-            Toast.makeText(requireContext(), "The bookmark state is ${album.isBookmarked}", Toast.LENGTH_SHORT).show()
         })
         binding.resultList.adapter = adapter
 

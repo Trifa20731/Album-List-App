@@ -1,60 +1,82 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <variable
             name="album"
             type="com.codingtest.albumlistapp.entities.Album" />
+
         <variable
             name="clickListener"
             type="com.codingtest.albumlistapp.presentations.album_list.album.AlbumClickListener" />
     </data>
 
     <LinearLayout
-        android:orientation="horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp">
+        android:layout_marginHorizontal="4dp"
+        android:layout_marginVertical="8dp"
+        android:orientation="horizontal">
 
         <ImageView
             android:id="@+id/artworkUrlIv"
             android:layout_width="100dp"
             android:layout_height="100dp"
-            app:imageUrl="@{album.artworkUrl100}"/>
+            app:imageUrl="@{album.artworkUrl100}" />
 
-        <LinearLayout
-            android:layout_weight="1"
-            android:orientation="vertical"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="0dp"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:layout_marginHorizontal="4dp"
+            android:layout_weight="1">
 
             <TextView
                 android:id="@+id/collectionNameTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{album.collectionName}"/>
+                android:ellipsize="end"
+                android:maxLines="2"
+                android:text="@{album.collectionName}"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/trackCountTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{Integer.toString(album.trackCount)}"/>
+                android:layout_marginTop="4dp"
+                app:noOfSoundTrack="@{album.trackCount}"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/collectionNameTv" />
 
             <TextView
                 android:id="@+id/releaseDateTv"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{album.releaseDate}"/>
+                android:text="@{album.releaseDate}"
+                android:textSize="12sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/bookmarkedBtn" />
 
             <ImageButton
                 android:id="@+id/bookmarkedBtn"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:background="@null"
+                android:onClick="@{() -> clickListener.onClick(album)}"
                 app:isBookmarked="@{album.isBookmarked}"
-                android:onClick="@{() -> clickListener.onClick(album)}"/>
-        </LinearLayout>
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
     </LinearLayout>
 
 

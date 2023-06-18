@@ -2,4 +2,7 @@
     <string name="app_name">AlbumListApp</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="number_of_result_found_string_format">%d collections found in result.</string>
+    <string name="number_of_sound_track_string_format">Sound Track Amount:%d</string>
 </resources>
