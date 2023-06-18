@@ -10,3 +10,6 @@
 3. Bookmarked List Function
   - ~~Use local strage function to store the bookmarked item name~~
 4. Refine UI 
+
+## Bug
+1. The bookmark icon cannot change immediately after clicking, but the data can update correctly.
