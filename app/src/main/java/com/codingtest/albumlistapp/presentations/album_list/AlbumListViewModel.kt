@@ -18,6 +18,8 @@ class AlbumListViewModel: ViewModel() {
         private const val LOG_TAG: String = "AlbumListViewModel"
     }
 
+    val bookmarkedList: MutableList<String> = mutableListOf()
+
     private val _albumApiResponse = MutableLiveData<AlbumApiResponse>()
     val albumApiResponse: LiveData<AlbumApiResponse>
         get() = _albumApiResponse
@@ -43,6 +45,16 @@ class AlbumListViewModel: ViewModel() {
                 _albumApiStatus.value = AlbumApiStatus.ERROR
             }
         }
+    }
+
+    fun getBookmarkedListString(): String {
+        var outputString: String = ""
+        if (bookmarkedList.isNotEmpty()) {
+            for((index, bookmarkedCollectionName) in bookmarkedList.withIndex()) {
+                outputString += "${index+1}. $bookmarkedCollectionName\n"
+            }
+        }
+        return outputString
     }
 
 }

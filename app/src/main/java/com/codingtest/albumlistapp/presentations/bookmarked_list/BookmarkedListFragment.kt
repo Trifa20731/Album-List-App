@@ -6,20 +6,42 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.codingtest.albumlistapp.R
+import com.codingtest.albumlistapp.databinding.FragmentAlbumListBinding
+import com.codingtest.albumlistapp.databinding.FragmentBookmarkedListBinding
 
 
 class BookmarkedListFragment : Fragment() {
 
+    private var bookmarkedListString: String = ""
+
+    companion object {
+        fun newInstance(data: String): BookmarkedListFragment {
+            val fragment = BookmarkedListFragment()
+            val args = Bundle()
+            args.putString("BOOKMARK_LIST_STRING", data)
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        arguments?.getString("BOOKMARK_LIST_STRING")?.let {
+            bookmarkedListString = it
+        }
     }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_bookmarked_list, container, false)
+        val binding = FragmentBookmarkedListBinding.inflate(inflater)
+        binding.lifecycleOwner = this
+
+        binding.bookmarkedListTv.text = bookmarkedListString
+
+        return binding.root
+
     }
 
 }
